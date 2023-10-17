@@ -74,7 +74,14 @@ class Pipe:
         deltaP : float
             The pressure drop across the pipe [Pa]
         """
-        return 0
+        if(deltaP < 0):  # edge case -- we don't want back flow
+            return 0
+        
+        Vavg = self.diameter**2 * deltaP / (32 * self.fluid.viscosity * self.length)
+        Q = Vavg * self.cross_sectional_area
+
+        # Assuming non-turbulent flow
+        return Q
     
     def isTurbulent(self, Q):
         """
@@ -127,13 +134,19 @@ class Tank:
         """
         Calculate the pressure at the outlet of the tank
         """
-        return 0
+        dHeight = self.fluid_height - self.outlet_height
+        if(dHeight < 0):  # edge case where fluid is below the outlet
+            dHeight = 0
+        return self.fluid.density * dHeight * 9.81
     
     def inlet_pressure(self):
         """
         Calculate the pressure at the inlet of the tank
         """
-        return 0
+        dHeight = self.fluid_height - self.inlet_height
+        if(dHeight < 0):
+            dHeight = 0
+        return self.fluid.density * dHeight * 9.81
     
     def drain_tank(self, V):
         """
@@ -144,7 +157,8 @@ class Tank:
         V : float
             The volume to drain from the tank [m^3]
         """
-        return 0
+        dHeight = V / self.tank_area
+        self.fluid_height -= dHeight
     
     def fill_tank(self, V):
         """
@@ -155,4 +169,6 @@ class Tank:
         V : float
             The volume to fill the tank with [m^3]
         """
-        return 0
+
+        dHeight = V / self.tank_area
+        self.fluid_height += dHeight

@@ -1,0 +1,59 @@
+body {
+    background-color: #1F1717;
+    color: #FCF5ED;
+}
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+p{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+a{
+    color:F4BF96;
+}
+a.visited{
+    color:FCF5ED;
+}
+a.hover{
+    color:CE5A67
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.float{ 
+    float:center;
+
+    width:50%;
+    margin:30px;
+    padding:10px;
+    border-color:CE5A67;
+    border-style:double;
+}
+
+table{
+    width:100%;
+    margin:20px;
+    border-color:#FCF5ED;
+    border-style: groove;
+}
+
+td{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+button{
+    background-color: #CE5A67;
+    color: #FCF5ED;
+    border-radius: 5px;
+    border-color: #CE5A67;
+    border-style: groove;
+    padding: 5px;
+    margin: 5px;
+}
